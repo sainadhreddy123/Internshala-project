@@ -1,0 +1,51 @@
+-- SQL Script to Create the 'Registration' Table
+
+CREATE TABLE Registration (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    DateOfBirth DATE,
+    -- Add additional fields as needed
+);
+
+-- SQL Script to Implement CRUD Operations
+
+-- Create Operation
+CREATE PROCEDURE CreateRegistration(
+    IN p_Name VARCHAR(255),
+    IN p_Email VARCHAR(255),
+    IN p_DateOfBirth DATE
+)
+BEGIN
+    INSERT INTO Registration (Name, Email, DateOfBirth)
+    VALUES (p_Name, p_Email, p_DateOfBirth);
+END;
+
+-- Read Operation
+CREATE PROCEDURE ReadRegistration(
+    IN p_ID INT
+)
+BEGIN
+    SELECT * FROM Registration WHERE ID = p_ID;
+END;
+
+-- Update Operation
+CREATE PROCEDURE UpdateRegistration(
+    IN p_ID INT,
+    IN p_Name VARCHAR(255),
+    IN p_Email VARCHAR(255),
+    IN p_DateOfBirth DATE
+)
+BEGIN
+    UPDATE Registration
+    SET Name = p_Name, Email = p_Email, DateOfBirth = p_DateOfBirth
+    WHERE ID = p_ID;
+END;
+
+-- Delete Operation
+CREATE PROCEDURE DeleteRegistration(
+    IN p_ID INT
+)
+BEGIN
+    DELETE FROM Registration WHERE ID = p_ID;
+END;
